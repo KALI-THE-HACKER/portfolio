@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8XH1SRMH5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F8XH1SRMH5');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luckylinux</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!--Luckylinux's Analytics-->
+    <script defer data-domain="portfolio.luckylinux.xyz" src="https://analytics.luckylinux.xyz/js/script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --cream: #fdfaf6;
+            --cream-darker: #f5efe6;
+            --glass: rgba(255, 255, 255, 0.45);
+            --glass-darker: rgba(255, 255, 255, 0.55);
+        }
+        
+        * {
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-darker) 100%);
+            overflow-x: hidden;
+        }
+        
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .glass-darker {
+            background: var(--glass-darker);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        .card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .card-half {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-half:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px 0 rgba(31, 38, 135, 0.2);
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            transition: transform 0.7s ease;
+        }
+
+        .project-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .stagger-delay > * {
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .stagger-delay > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-delay > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-delay > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-delay > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-delay > *:nth-child(5) { animation-delay: 0.5s; }
+        .stagger-delay > *:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #3B82F6, #EC4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, #3B82F6, #EC4899);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: blobFloat 20s infinite alternate;
+        }
+
+        .typed-cursor {
+            background: linear-gradient(45deg, #3B82F6, #EC4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: inherit;
+        }
+
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: white;
+            color: #0077B5;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .linkedin-btn i {
+            margin-right: 8px;
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: white;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu {
+                flex-direction: column;
+                width: 100%;
+                padding: 1rem 0;
+            }
+            .mobile-menu a {
+                display: block;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            .mobile-menu a:last-child {
+                border-bottom: none;
+            }
+            .github-stats-container {
+                overflow-x: auto;
+            }
+            .github-stats-container > div {
+                min-width: 300px;
+            }
+        }
+
+        @keyframes blobFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 100px) scale(1.1); }
+            100% { transform: translate(-100px, -100px) scale(0.9); }
+        }
+
+        /* Project badges styling */
+        .tech-badge {
+            @apply px-2 py-1 text-xs rounded-full font-medium;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Background Blobs -->
+    <div class="blob" style="top: 0; left: 0;"></div>
+    <div class="blob" style="bottom: 0; right: 0;"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-darker fixed w-full z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center">
+            <div class="text-2xl font-semibold gradient-text animate-fade-in">Portfolio</div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 desktop-menu">
+                <a href="#home" class="nav-link hover:text-blue-600 transition">Home</a>
+                <a href="#projects" class="nav-link hover:text-blue-600 transition">Projects</a>
+                <a href="#github" class="nav-link hover:text-blue-600 transition">GitHub</a>
+                <a href="#skills" class="nav-link hover:text-blue-600 transition">Skills</a>
+                <a href="#contact" class="nav-link hover:text-blue-600 transition">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="mobile-menu hidden" id="mobile-menu">
+            <a href="#home" class="nav-link hover:text-blue-600 transition">Home</a>
+            <a href="#projects" class="nav-link hover:text-blue-600 transition">Projects</a>
+            <a href="#github" class="nav-link hover:text-blue-600 transition">GitHub</a>
+            <a href="#skills" class="nav-link hover:text-blue-600 transition">Skills</a>
+            <a href="#contact" class="nav-link hover:text-blue-600 transition">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4">
+        <div class="max-w-6xl mx-auto px-2 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div class="space-y-6 animate-slide-up">
+                <h1 class="text-4xl md:text-5xl font-bold">
+                    Hi, I'm <span class="gradient-text" id="self-typed"></span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600">
+                    A Tech enthusiast and B.Tech student at NITK Surathkal. I love coding, exploring new technologies, solving real life problems and contributing to open source. My interests include Docker, Systems, Networking, Linux, Backend and Full-stack.<br>
+                    My coding journey began at the age of 14, and since then, I've been driven by a passion for creating impactful solutions through technology.<br>
+                    Beyond tech, I enjoy physics and deep conversations.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://www.linkedin.com/in/luckylinux" target="_blank" class="linkedin-btn">
+                        Linked&nbsp;<i class="fab fa-linkedin"></i>
+                    </a>
+                    
+                    <a href="https://github.com/KALI-THE-HACKER" target="_blank" class="github-btn">
+                        <i class="fab fa-github"></i>&nbsp;GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="relative hidden md:block">
+                <div class="glass-darker rounded-2xl p-8 animate-float">
+                    <img src="./assets/profile_img.png" alt="Profile" class="rounded-xl">
+                </div>
+            </div>
+            <!-- Mobile profile image -->
+            <div class="relative md:hidden w-2/3 mx-auto">
+                <div class="glass-darker rounded-2xl p-4 animate-float">
+                    <img src="./assets/profile_img.png" alt="Profile" class="rounded-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 md:py-20">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <h2 class="text-3xl font-bold mb-6 text-center gradient-text">My Projects</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Check out some of my recent work and open source contributions. Each project represents a journey of learning and innovation.
+                <br>(I know all of these projects are pretty basic, but these are the things which filled me with confident in my journey of coding)
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-delay">
+
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48 bg-black">
+                        <img src="./assets/railsplit-logo.png" alt="Railsplit" class="w-1/2 mx-auto object-cover project-image">
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <a href="https://github.com/KALI-THE-HACKER/railsplit-frontend" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">Railsplit</h3>
+                        <p class="text-gray-600 mb-4">Railsplit is a smartphone-friendly web app that smartly splits long journeys into two legs to help users find confirmed tickets easily, using my custom made algorithm. The whole computation is based on my own custom made algorithm, running on my own server.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-pink-600">ReactJS</span>
+                            <span class="tech-badge text-green-600">FastAPI</span>
+                            <span class="tech-badge text-blue-500">Docker</span>
+                            <span class="tech-badge text-red-600">Redis</span>
+                            <span class="tech-badge text-green-600">SSE</span>
+                            <span class="tech-badge text-yellow-600">Playwright</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="./assets/Chronocare-dashboard.png" alt="Network.K" class="object-cover project-image">
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <a href="https://github.com/KALI-THE-HACKER/chronocare" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">ChronoCare</h3>
+                        <p class="text-gray-600 mb-4">A health management platform featuring a clickable 3D human body. Each body part displays its medical history and timeline. It also includes a RAG-based chatbot to answer patient queries based on its medical history securely and intuitively.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-blue-600">ReactJS</span>
+                            <span class="tech-badge text-yellow-600">TailwindCSS</span>
+                            <span class="tech-badge text-green-600">FastAPI</span>
+                            <span class="tech-badge text-red-600">ChromaDB & MySQL</span>
+                            <span class="tech-badge text-purple-600">Agentic AI (RAG)</span>  
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="./assets/server-dashboard.png" alt="Network.K" class="object-fit project-image">
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <!-- <a href="https://github.com/KALI-THE-HACKER/chronocare" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Project</a> -->
+                                <p class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium  transition-all">No public access</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">Server-dashboard</h3>
+                        <p class="text-gray-600 mb-4">A custom server dashboard that provides real-time system monitoring, lets you control applications and services, and offers a secure <strong></strong>browser-based terminal</strong> — accessible from anywhere.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-yellow-400">Websockets</span>
+                            <span class="tech-badge text-green-600">FastAPI</span>
+                            <span class="tech-badge text-purple-600">Psutil</span>
+                            <span class="tech-badge text-red-600">Systems</span>
+                            <span class="tech-badge text-blue-600">React</span>
+                            <span class="tech-badge text-yellow-600">JWT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="./assets/xpensex-dashboard.png" alt="Network.K" class="object-cover project-image">
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <a href="https://github.com/KALI-THE-HACKER/xpensex" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">XpenseX</h3>
+                        <p class="text-gray-600 mb-4">A personal finance web app with an intuitive dashboard for tracking income, expenses, and savings. Built with enterprise-grade deployment—Docker, CI/CD, Azure Cloud, and robust security—it delivers a production-ready solution.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-blue-600">CI/CD Pipeline</span>
+                            <span class="tech-badge text-yellow-600">Nginx</span>
+                            <span class="tech-badge text-green-600">Azure</span>
+                            <span class="tech-badge text-purple-600">Docker</span> 
+                            <span class="tech-badge text-red-600">Full stack</span> 
+                            <span class="tech-badge text-blue-600">FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://github.com/KALI-THE-HACKER/NetworkK/blob/main/assets/images/logo.png?raw=true" alt="Network.K" class="w-1/2 mx-auto object-cover project-image">
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <a href="https://github.com/KALI-THE-HACKER/NetworkK" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">Network.K</h3>
+                        <p class="text-gray-600 mb-4">A campus networking app designed for NITK students. It helps users connect with peers, share resources, collaborate on projects, and stay updated with college events — all in one place.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-blue-600">Flutter</span>
+                            <span class="tech-badge text-yellow-600">SQLite</span>
+                            <span class="tech-badge text-green-600">RestAPI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48 bg-black">
+                        <img src="https://github.com/KALI-THE-HACKER/Alarmmate/blob/main/readme_assets/home_page.png?raw=true" alt="Alarmmate" class="h-60 mx-auto object-cover project-image">
+                        
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <a href="https://github.com/KALI-THE-HACKER/Alarmmate" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">Alarmmate</h3>
+                        <p class="text-gray-600 mb-4">Flutter alarm app designed to help
+                        schedule and manage alarms effortlessly. With a sleek UI and reliable notifications, Alarmmate ensures that it's users never miss a beat – whether it’s a morning wake-up call or a timely reminder!</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-red-600">Flutter</span>
+                            <span class="tech-badge text-purple-600">Hive(Flutter)</span>
+                            <span class="tech-badge text-blue-600">State Management(Provider package)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://github.com/KALI-THE-HACKER/Traventure/raw/main/traventure-screenshot.png" alt="Traventure" class="h-60 mx-auto  object-cover project-image">
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <a href="https://github.com/KALI-THE-HACKER/Traventure" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">Traventure</h3>
+                        <p class="text-gray-600 mb-4">A simple travel app that helps users discover aesthetic destinations and grab info through travel cards along with some attractive pictures.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-green-600">Flutter</span>
+                            <span class="tech-badge text-yellow-600">DartSDK</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-darker rounded-xl overflow-hidden project-card">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://github.com/CCExtractor/ultimate_alarm_clock/blob/main/assets/images/ic_launcher-playstore.png?raw=true" alt="Ultimate Alarm Clock" class="w-40 h-40 mx-auto object-cover project-image">
+                        <div class="absolute inset-0 project-overlay flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <a href="https://github.com/CCExtractor/ultimate_alarm_clock/pull/642" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-md font-medium hover:bg-blue-500 hover:text-white transition-all">View Pull request</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold mb-2">Open Source Contribution</h3>
+                        <p class="text-gray-600 mb-4">Contributed to a open source organization CCExtractor's project - Ultimate Alarm Clock. Added a feature- Impliment randomized ringtone selection</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge text-blue-600">Flutter</span>
+                            <span class="tech-badge text-green-600">Git</span>
+                            <span class="tech-badge text-yellow-600">Open Source</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://github.com/KALI-THE-HACKER?tab=repositories" target="_blank" class="inline-block glass-darker hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105">
+                    <i class="fab fa-github mr-2"></i> View More on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 stagger-delay">
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fa-brands fa-docker text-5xl text-blue-400 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">Docker</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-blue-500 rounded-full"></span>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <img src="./assets/ci-cd-logo.png" alt="CI/CD" class="h-12 mx-auto mb-4" />
+                    <h3 class="text-lg font-medium mb-2">CI/CD</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-blue-500 rounded-full"></span>
+                    </div>
+                </div>
+                
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fas fa-network-wired text-5xl text-purple-500 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">Networking</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-purple-500 rounded-full"></span>
+                    </div>
+                </div>
+                
+                <div class="glass-darker rounded-xl p-6 card text-center">   
+                    <img src="https://pypi-camo.freetls.fastly.net/f6cae0b8a7814abdafd9c6de99569205b1fcc307/68747470733a2f2f666173746170692e7469616e676f6c6f2e636f6d2f696d672f6c6f676f2d6d617267696e2f6c6f676f2d7465616c2e706e67" alt="Flutter" class="h-12 mx-auto mb-4" />
+                    <h3 class="text-lg font-medium mb-2">FastAPI</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-green-600 rounded-full"></span>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fas fa-code-branch text-5xl text-gray-700 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">Git & GitHub</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-gray-700 rounded-full"></span>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fas fa-database text-5xl text-red-500 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">Redis</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-0.5 bg-red-500 rounded-full"></span>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fas fa-masks-theater text-5xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">Playwright</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-0.5 bg-yellow-600 rounded-full"></span>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fab fa-python text-5xl text-yellow-400 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">Python</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-yellow-400 rounded-full"></span>
+                    </div>
+                </div>
+
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-flutter-logo-icon-download-in-svg-png-gif-file-formats--programming-language-coding-development-logos-icons-1720090.png?f=webp" alt="Flutter" class="h-12 mx-auto mb-4" />
+                    <h3 class="text-lg font-medium mb-2">Flutter</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-blue-500 rounded-full"></span>
+                    </div>
+                </div>
+                
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fab fa-react text-5xl text-pink-600 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">ReactJS</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-pink-600 rounded-full"></span>
+                    </div>
+                </div>
+                
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <i class="fa-brands fa-html5 text-5xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">HTML-CSS</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-1 bg-yellow-600 rounded-full"></span>
+                    </div>
+                </div>
+             
+                <div class="glass-darker rounded-xl p-6 card text-center">
+                    <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="tailwindcss" class="h-12 mx-auto mb-4" />
+                    <h3 class="text-lg font-medium mb-2">TailwindCSS</h3>
+                    <div class="mt-4 flex items-center justify-center">
+                        <span class="w-10 h-0.5 bg-blue-500 rounded-full"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Stats Section -->
+    <section id="github" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">GitHub Activity</h2>
+            <div class="flex flex-col md:grid md:grid-cols-3 gap-8 overflow-x-auto github-stats-container stagger-delay">
+                <div class="glass-darker rounded-xl p-4 md:p-6 card-half">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=KALI-THE-HACKER" alt="GitHub Streak" class="w-full" />
+                </div>
+
+                <div class="glass-darker rounded-xl p-4 md:p-6 card">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=KALI-THE-HACKER&langs_count=5" alt="Top Languages" class="w-full" />
+                </div>
+                
+                <div class="glass-darker rounded-xl p-4 md:p-6 card-half">
+                    <img src="https://github-readme-stats.vercel.app/api?username=KALI-THE-HACKER&theme=graywhite&show_icons=true&hide_border=true&count_private=true" alt="Stats" class="w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 md:px-6">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Get in Touch</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Have a project in mind or want to collaborate? Feel free to reach out and let's create something amazing together!</p>
+            <div class="glass-darker rounded-xl p-6 md:p-8 animate-slide-up">
+                <form id="myForm" class="space-y-6" action="https://formsubmit.co/c8a5f47b56d4a2553bf74461ac1b848a" method="POST">
+                    <input type="hidden" name="_next" value="https://luckylinux.xyz/message-sent.html">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-2 rounded-lg glass focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-300" name="name" placeholder="Your name" required>
+                        </div>
+                        <div>
+                            <label class="block mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg glass focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-300" placeholder="Your email" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block mb-2">Subject</label>
+                        <input type="text" id="subject" name="subject" class="w-full px-4 py-2 rounded-lg glass focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-300" placeholder="Your subject">
+                    </div>
+                    <div>
+                        <label class="block mb-2">Message</label>
+                        <textarea rows="4" id="message" class="w-full px-4 py-2 rounded-lg glass focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-300" placeholder="Your message" name="message" required></textarea>
+                    </div>
+                    <!--Hidden input: tell FormSubmit not to ask for CAPTCHA-->
+                    <input type="hidden" name="_blacklist" value="zekisuquc419@gmail.com, xiceruxuk02@gmail.com, price, prices">
+                    <input type="hidden" name="_captcha" value="true">
+                    <div class="flex justify-center">
+                        <button type="submit" class="px-6 py-3 rounded-lg glass-darker hover:bg-blue-600 hover:text-white transition-all transform hover:scale-105 font-medium">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-transparent">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-gray-200 pt-8">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="text-gray-600">© 2025 Luckylinux. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <!-- <a href="https://x.com/<dissabled>" class="text-gray-600 hover:text-blue-600 transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a> -->
+                    <a href="https://github.com/KALI-THE-HACKER" target="_blank" class="text-gray-600 hover:text-blue-600 transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/luckylinux" target="_blank" class="text-gray-600 hover:text-blue-600 transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_luckylinux" class="text-gray-600 hover:text-blue-600 transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Typed.js initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            new Typed('#self-typed', {
+                strings: ['LuckyLinux!', 'a Developer!'],
+                typeSpeed: 60,
+                backSpeed: 30,
+                loop: true,
+                backDelay: 1500
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const form = document.getElementById("myForm");
+        const blacklistedEmails = ["zekisuquc419@gmail.com", "xiceruxuk02@gmail.com"];
+        const blacklistedWords = ["price", "prices"];
+
+        form.addEventListener("submit", function (e) {
+            const email = document.getElementById("email").value.toLowerCase();
+            const message = document.getElementById("message").value.toLowerCase();
+            const subject = document.getElementById("subject").value.toLowerCase();
+
+            if (blacklistedEmails.includes(email)) {
+            alert("This email is not allowed.");
+            e.preventDefault();
+            return;
+            }
+
+            for (let word of blacklistedWords) {
+            if (message.includes(word) || subj.includes(word)) {
+                alert("Inappropriate message content detected.");
+                e.preventDefault();
+                return;
+            }
+            }
+        });
+    </script>
+</body>
+</html>
